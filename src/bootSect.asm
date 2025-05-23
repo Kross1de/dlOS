@@ -1,9 +1,8 @@
 ;;; 
 ;;; Simple Boot Sector that prints a character using BIOS int 0x10/ AH 0x0e
 ;;;
-
-	mov ah, 0x0e		; int 10/ ah 0x0e BIOS teletype output
-	mov al, 'T'		; character we want to print
+	
+	mov ax, 0x0e54		; prints a 'T'?
 	int 0x10		; BIOS video interrupts
 
 here:
