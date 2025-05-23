@@ -1,8 +1,14 @@
 ;;; 
-;;; Simple Boot Sector that prints characters using BIOS int 0x10/ AH 0x0e and labels/loop
+;;; Simple Boot Sector that prints characters using BIOS interrupts
 ;;;
-	org 0x7c00		; 'origin' of Boot code; helps make sure addresses don't change
+	org 0x7c00		; 'origin' of Boot code; helps make sure addresses don't changei
 
+	;; Set video mode
+	mov ah, 0x00		; int 0x10 ah 0x00 = set video mode
+	mov al, 0x03		; 80x25 text mode
+	int 0x10
+
+	;; Tele-type output
 	mov ah, 0x0e		; int 10/ ah 0x0e BIOS teletype output
 	mov bx, testString	; moving memory address at testString into BX register
 
