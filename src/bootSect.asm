@@ -7,9 +7,16 @@
 	mov bx, testString	; moving memory address at testString into BX register
 	mov al, [bx]	 	; character we want to print; memory at address bx
 	int 0x10		; BIOS video interrupts
+	
+	mov al, [bx+1]		; add 1 byte offset to bx address, move into al; 'E'
+	int 0x10
+	add bx, 2		; adds 1 byte/moves forward 1 byte at address bx
+	mov al, [bx]		; 'S'
+	int 0x10
+	mov al, [bx+1]		; add 1 byte offset to bx address, mov into al; 'T'
+	int 0x10
 
-
-testString:	db 'T', 0 	; 0/null to null terminate
+testString:	db 'TEST', 0 	; 0/null to null terminate
 
 	jmp $			; keep jumping to here; neverending loop
 	
