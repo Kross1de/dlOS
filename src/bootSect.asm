@@ -4,9 +4,9 @@
 	org 0x7c00		; 'origin' of Boot code; helps make sure addresses don't change
 
 	mov ah, 0x0e		; int 10/ ah 0x0e BIOS teletype output
-	mov al, [testString] 	; character we want to print; memory at address testString
+	mov bx, testString	; moving memory address at testString into BX register
+	mov al, [bx]	 	; character we want to print; memory at address bx
 	int 0x10		; BIOS video interrupts
-
 
 
 testString:	db 'T', 0 	; 0/null to null terminate
@@ -15,4 +15,4 @@ testString:	db 'T', 0 	; 0/null to null terminate
 	
 	times 510-($-$$) db 0	; pads out 0s until we reach 510th byte
 
-	dw 0xaa55		; BIOS magic number; BOOT magic number
+	dw 0xaa55		; BIOS magic number in 511th and 512th bytes
