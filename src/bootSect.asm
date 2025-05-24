@@ -23,15 +23,19 @@
 	mov bx, string2
 	call print_string
 
+	mov dx, 0x12AB
+	call print_hex
+
 	;; End pgm
 	jmp $			; keep jumping to here; neverending loop
 	
 	;; Included files
 	include 'printStr.asm'
+	include 'printHex.asm'
 	
 	;; Variables
-testString:	db 'TEST', 0xA, 0xD, 0 	; 0/null to null terminate
-string2:	db 'Also a test', 0
+testString:	db 'Char test: Testing', 0xA, 0xD, 0 	; 0/null to null terminate
+string2:	db 'Hex test: ', 0
 
 	;; Boot sector magic
 	times 510-($-$$) db 0	; pads out 0s until we reach 510th byte
