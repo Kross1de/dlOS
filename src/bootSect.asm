@@ -16,9 +16,10 @@
 
 	;; Tele-type output
 	mov ah, 0x0e		; int 10/ ah 0x0e BIOS teletype output
+	
 	mov bx, testString	; moving memory address at testString into BX register
-
 	call print_string
+	
 	mov bx, string2
 	call print_string
 
@@ -30,7 +31,7 @@
 	
 	;; Variables
 testString:	db 'TEST', 0xA, 0xD, 0 	; 0/null to null terminate
-string2:	db 'Also a test', 0xA, 0xD, 0
+string2:	db 'Also a test', 0
 
 	;; Boot sector magic
 	times 510-($-$$) db 0	; pads out 0s until we reach 510th byte
