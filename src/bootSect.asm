@@ -21,17 +21,16 @@
 	call print_string
 	mov bx, string2
 	call print_string
-	jmp end_pgm
 
+	;; End pgm
+	jmp $			; keep jumping to here; neverending loop
+	
 	;; Included files
 	include 'printStr.asm'
 	
 	;; Variables
 testString:	db 'TEST', 0xA, 0xD, 0 	; 0/null to null terminate
 string2:	db 'Also a test', 0xA, 0xD, 0
-
-end_pgm:	
-	jmp $			; keep jumping to here; neverending loop
 
 	;; Boot sector magic
 	times 510-($-$$) db 0	; pads out 0s until we reach 510th byte
